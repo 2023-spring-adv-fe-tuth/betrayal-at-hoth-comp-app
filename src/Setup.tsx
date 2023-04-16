@@ -19,7 +19,8 @@ export const Setup = () => {
             <h2>Please select the number of players:</h2>
             <Form>
                 {radios.map((radio) => (
-                    <Form.Check type="radio"
+                    <Form.Check type='radio'
+                    name='radios'
                     id={radio.name}
                     label={radio.value}/>
                 ))}
