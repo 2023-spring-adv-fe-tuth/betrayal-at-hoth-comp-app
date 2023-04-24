@@ -11,15 +11,21 @@ const radios = [
     { name: "Six", value: 6}
 ];
 
-export const Setup = () => {
+interface SetupProps {
+    setSetupData: (info: SetupData) => void;
+};
+
+export const Setup: React.FC<SetupProps> = ({ setSetupData }) => {
 
     const nav = useNavigate();
     const [numberOfPlayers, setNumberOfPlayers] = useState(3);
 
     const startGame = () => {
+        setSetupData({
+            start: new Date().toISOString(),
+            players: numberOfPlayers
+        });
         
-
-
         nav("/results");
     };
 

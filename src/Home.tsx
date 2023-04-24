@@ -1,14 +1,18 @@
-import { ListGroupItem } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ListGroup from 'react-bootstrap/ListGroup';
+import { durationFormatter } from "human-readable";
 
 import { useNavigate } from "react-router-dom";
 
 
 interface HomeProps {
-    winnerRecord: string[]
+    winnerRecord: string[];
+    longestGame: number;
+    shortestGame: number;
 };
+
+const formatDate = durationFormatter();
 
 const cssColor = (x: string) => {
     let className = "";
@@ -21,7 +25,7 @@ const cssColor = (x: string) => {
     return className;
 };
 
-export const Home: React.FC<HomeProps> = ({ winnerRecord }) => {
+export const Home: React.FC<HomeProps> = ({ winnerRecord, longestGame, shortestGame }) => {
 
     const nav = useNavigate();
 
@@ -41,8 +45,8 @@ export const Home: React.FC<HomeProps> = ({ winnerRecord }) => {
                     <Card>
                         <Card.Header>Game Length</Card.Header>
                         <Card.Body>
-                            <p className="mb-1">Longest Game:</p>
-                            <p className="mb-1">Shortest Game:</p>
+                            <p className="mb-1">Longest Game: {formatDate(longestGame)}</p>
+                            <p className="mb-1">Shortest Game: {shortestGame}</p>
                             <ListGroup>
                                 {}
                             </ListGroup>

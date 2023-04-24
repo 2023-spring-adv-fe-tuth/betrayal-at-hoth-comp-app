@@ -24,7 +24,16 @@ export const getLongestGame: GetLongestGame = (results) => Math.max(...results.m
 export const getShortestGame: GetShortestGame = (results) => Math.min(...results.map(x => new Date(x.end).getTime() - new Date(x.start).getTime()));
 
 // export const getAvgGameLengths: GetAverageGameLengthsByPlayerCount = (results) => {
-// 	const gameDurationsGroupedByNumberOfPlayers = results.reduce()
+
+// 	const gameDurationsGroupedByNumberOfPlayers = results.reduce(
+// 		(acc, x) => acc.set(x.players.length
+// 			, [
+// 				...acc.get(x.players.length) ?? []
+// 				, new Date(x.end).getTime() - new Date(x.start).getTime()
+// 			]
+// 		)
+// 		, new Map<number, number[]>()
+// 	);
 
 // 	return [...gameDurationsGroupedByNumberOfPlayers]
 // 		.map(x => ({

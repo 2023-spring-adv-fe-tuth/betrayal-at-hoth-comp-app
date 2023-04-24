@@ -4,7 +4,7 @@ import { Home } from "./Home";
 import { Setup } from "./Setup";
 import { Results } from "./Results";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { GameResult, winnerRecord } from './data-models';
+import { GameResult, winnerRecord, getShortestGame, getLongestGame, SetupData } from './data-models';
 import { useState, useEffect} from 'react';
 
 const standInGameResults: GameResult[] = [
@@ -33,10 +33,18 @@ const standInGameResults: GameResult[] = [
     winner: "Haunt"
   }];
 
+
 function App() {
 
   const [gameResults, setGameResults] = useState(standInGameResults);
-  //console.log(gameResults);
+  const [setupData, setSetupData] = useState<SetupData>({
+    start: "",
+    players: 0
+  });
+
+  const addGameResult = () => {
+    setGameResults([ ...standInGameResults, result]);
+  }; 
 
   return (
     <div>
@@ -44,9 +52,13 @@ function App() {
         <Routes>
           <Route path='/' element={<Home 
           winnerRecord={winnerRecord(gameResults)}
+          longestGame={getLongestGame(gameResults)}
+          shortestGame={getShortestGame(gameResults)}
           />}/>
-          <Route path='/setup' element={<Setup/>}/>
-          <Route path='/results' element={<Results/>}/>
+          <Route path='/setup' element={<Setup
+          setSetupData={setSetupData}/>}/>
+          <Route path='/results' element={<Results
+          addGameResult={addGameResult}/>}/>
         </Routes>
       </HashRouter>    
     </div>
