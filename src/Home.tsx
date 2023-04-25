@@ -38,15 +38,16 @@ export const Home: React.FC<HomeProps> = ({ winnerRecord, longestGame, shortestG
                         <Card.Header>Winner History</Card.Header>
                         <Card.Body>
                             <ListGroup>
-                                {winnerRecord.map((x, index) => <ListGroup.Item variant={cssColor(x)} key={index}>{x}</ListGroup.Item>)}
+                                {winnerRecord.map((x, index) => 
+                                <ListGroup.Item variant={cssColor(x)} key={index}>{x}</ListGroup.Item>)}
                             </ListGroup>
                         </Card.Body>
                     </Card>
                     <Card>
                         <Card.Header>Game Length</Card.Header>
                         <Card.Body>
-                            <p className="mb-1">Longest Game: {formatDate(longestGame)}</p>
-                            <p className="mb-1">Shortest Game: {shortestGame}</p>
+                            <p className="mb-1">{`Longest Game: ${formatDate(longestGame)}`}</p>
+                            <p className="mb-1">{`Shortest Game: ${formatDate(shortestGame)}`}</p>
                             <ListGroup>
                                 {}
                             </ListGroup>

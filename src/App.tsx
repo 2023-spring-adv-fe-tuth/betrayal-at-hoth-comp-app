@@ -42,9 +42,11 @@ function App() {
     players: 0
   });
 
-  const addGameResult = () => {
+  const addGameResult = (result: GameResult) => {
     setGameResults([ ...standInGameResults, result]);
   }; 
+
+  console.log(setupData);
 
   return (
     <div>
@@ -58,7 +60,8 @@ function App() {
           <Route path='/setup' element={<Setup
           setSetupData={setSetupData}/>}/>
           <Route path='/results' element={<Results
-          addGameResult={addGameResult}/>}/>
+          addGameResult={addGameResult}
+          setupData={setupData}/>}/>
         </Routes>
       </HashRouter>    
     </div>
