@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 
 interface HomeProps {
-    winnerRecord: string[];
+    winnerRecord: {
+        winner: string;
+        players: number;
+    }[];
     longestGame: number;
     shortestGame: number;
 };
@@ -32,14 +35,13 @@ export const Home: React.FC<HomeProps> = ({ winnerRecord, longestGame, shortestG
     return (
             <div className="d-flex align-items-center justify-content-center">
                 <div>
-                    <h1>Welcome to Betrayal at House on the Hill</h1>
                     <Button className="mb-3" onClick={() => nav("/setup")}>Play</Button>
                     <Card className="mb-3">
-                        <Card.Header>Winner History</Card.Header>
+                        <Card.Header>Game History</Card.Header>
                         <Card.Body>
                             <ListGroup>
                                 {winnerRecord.map((x, index) => 
-                                <ListGroup.Item variant={cssColor(x)} key={index}>{x}</ListGroup.Item>)}
+                                <ListGroup.Item variant={cssColor(x.winner)} key={index}>{x.winner} Players: {x.players}</ListGroup.Item>)}
                             </ListGroup>
                         </Card.Body>
                     </Card>

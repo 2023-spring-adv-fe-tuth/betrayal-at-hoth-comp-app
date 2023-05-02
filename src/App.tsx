@@ -6,6 +6,7 @@ import { Results } from "./Results";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { GameResult, winnerRecord, getShortestGame, getLongestGame, SetupData } from './data-models';
 import { useState, useEffect} from 'react';
+import localforage from "localforage";
 
 const standInGameResults: GameResult[] = [
   {
@@ -28,7 +29,7 @@ const standInGameResults: GameResult[] = [
   }, 
   {
     start: "2023-04-15T14:05:21.354Z",
-    end: "2023-04-15T16:56:42.424",
+    end: "2023-04-15T16:56:42.424Z",
     players: 5,
     winner: "Haunt"
   }];
@@ -36,26 +37,28 @@ const standInGameResults: GameResult[] = [
 
 function App() {
 
-  const [gameResults, setGameResults] = useState(standInGameResults);
+  const [gameResults, setGameResults] = useState<GameResult[]>(standInGameResults);
   const [setupData, setSetupData] = useState<SetupData>({
     start: "",
     players: 0
   });
 
   const addGameResult = (result: GameResult) => {
-    setGameResults([ ...standInGameResults, result]);
+    setGameResults([ ...gameResults, result]);
   }; 
 
-  console.log(setupData);
+  //console.log(setupData);
 
   return (
-    <div>
+    <div className="m-3">
+      <h1>Welcome to Betrayal at House on the Hill</h1>
       <HashRouter>
         <Routes>
           <Route path='/' element={<Home 
           winnerRecord={winnerRecord(gameResults)}
           longestGame={getLongestGame(gameResults)}
           shortestGame={getShortestGame(gameResults)}
+          //averageGameDuration={getAverageGameDurationByPlayerCount(gameResults)}
           />}/>
           <Route path='/setup' element={<Setup
           setSetupData={setSetupData}/>}/>

@@ -20,7 +20,7 @@ export const Results: React.FC<ResultsProps> = ({ addGameResult, setupData }) =>
             players: setupData.players,
             winner: winner
         };
-
+        console.log(newResult);
         addGameResult(newResult);
 
         nav(-2);
