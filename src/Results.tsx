@@ -20,27 +20,27 @@ export const Results: React.FC<ResultsProps> = ({ addGameResult, setupData }) =>
             players: setupData.players,
             winner: winner
         };
-        console.log(newResult);
+        //console.log(newResult);
         addGameResult(newResult);
 
         nav(-2);
     };
 
     return (
-        <div className="container text-center">
-            <div className="row">
+        <>
+            <div className="row text-center">
                 <h1>Who Won?</h1>
             </div>
-            <div className="row justify-content-around">
-                <div className="col-4">
+            <div className="row justify-content-evenly">
+                <div className="col-4 text-center">
                     <Button variant="success" value="Explorers" 
                     onClick={e => gameOver((e.target as HTMLButtonElement).value)}>Explorers</Button>
                 </div>
-                <div className="col-4">
+                <div className="col-4 text-center">
                     <Button variant="danger" value="Haunt" 
                     onClick={e => gameOver((e.target as HTMLButtonElement).value)}>Haunt</Button>
                 </div>
             </div>
-        </div>
+        </>
     );
 };

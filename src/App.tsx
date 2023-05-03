@@ -50,11 +50,13 @@ function App() {
   //console.log(setupData);
 
   return (
-    <div className="m-3">
-      <h1>Welcome to Betrayal at House on the Hill</h1>
+    <div className="container">
+      <div className="text-center">
+        <h1>Welcome to Betrayal at House on the Hill</h1>
+      </div>
       <HashRouter>
         <Routes>
-          <Route path='/' element={<Home 
+          <Route path='/' element={<Home
           winnerRecord={winnerRecord(gameResults)}
           longestGame={getLongestGame(gameResults)}
           shortestGame={getShortestGame(gameResults)}

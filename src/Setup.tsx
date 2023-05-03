@@ -30,8 +30,8 @@ export const Setup: React.FC<SetupProps> = ({ setSetupData }) => {
     };
 
     return (
-        <div className="d-flex align-items-center justify-content-center">
-            <div>
+        <>
+            <div className="border border-2 rounded-2 border-info p-2">
                 <h1>Setup</h1>
                 <h2>Please select the number of players:</h2>
                 <Form className="mb-3">
@@ -44,9 +44,9 @@ export const Setup: React.FC<SetupProps> = ({ setSetupData }) => {
                         key={index}
                         onChange={e => setNumberOfPlayers(Number(e.target.value))}/>
                     ))}
+                    <Button className="mt-3" onClick={startGame}>Start</Button>
                 </Form>
-                <Button onClick={startGame}>Start</Button>
             </div>
-        </div>
+        </>
     );
 };

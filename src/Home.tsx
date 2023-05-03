@@ -33,9 +33,9 @@ export const Home: React.FC<HomeProps> = ({ winnerRecord, longestGame, shortestG
     const nav = useNavigate();
 
     return (
-            <div className="d-flex align-items-center justify-content-center">
+            <>
                 <div>
-                    <Button className="mb-3" onClick={() => nav("/setup")}>Play</Button>
+                    <Button className="mb-3" variant="success" onClick={() => nav("/setup")}>Play</Button>
                     <Card className="mb-3">
                         <Card.Header>Game History</Card.Header>
                         <Card.Body>
@@ -56,6 +56,6 @@ export const Home: React.FC<HomeProps> = ({ winnerRecord, longestGame, shortestG
                         </Card.Body>
                     </Card>
                 </div>
-            </div>
+            </>
     );
 };
