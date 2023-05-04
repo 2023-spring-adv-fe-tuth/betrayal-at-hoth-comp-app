@@ -4,7 +4,7 @@ import { Home } from "./Home";
 import { Setup } from "./Setup";
 import { Results } from "./Results";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { GameResult, winnerRecord, getShortestGame, getLongestGame, SetupData } from './data-models';
+import { GameResult, winnerRecord, getShortestGame, getLongestGame, SetupData, avgGameLengths } from './data-models';
 import { useState, useEffect} from 'react';
 import { saveGameToCloud, loadGamesFromCloud } from './tca-cloud-api';
 
@@ -126,7 +126,7 @@ function App() {
         <h1>Welcome to Betrayal at House on the Hill</h1>
       </div>
       <div className="my-3">
-        <p className="fw-light">Enter a username then pick a number between 1 - 100 to help ensure uniqeness.</p>
+        <p className="fw-light">Enter a username then pick a number between 1 - 100 to help ensure uniqueness in case of duplicate usernames.</p>
         <InputGroup>
           <Button variant="primary" onClick={saveUserInfo}>Submit</Button>
           <Form.Control type="text" placeholder="Username@email.com" aria-label="Username" aria-describedby="username"
@@ -141,7 +141,7 @@ function App() {
           winnerRecord={winnerRecord(gameResults)}
           longestGame={getLongestGame(gameResults)}
           shortestGame={getShortestGame(gameResults)}
-          //averageGameDuration={getAverageGameDurationByPlayerCount(gameResults)}
+          avgGameLengths={avgGameLengths(gameResults)}
           />}/>
           <Route path='/setup' element={<Setup
           setSetupData={setSetupData}/>}/>

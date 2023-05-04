@@ -44,7 +44,7 @@ export const Setup: React.FC<SetupProps> = ({ setSetupData }) => {
                         key={index}
                         onChange={e => setNumberOfPlayers(Number(e.target.value))}/>
                     ))}
-                    <Button className="mt-3" onClick={startGame}>Start</Button>
+                    <Button className="mt-3" onClick={startGame}>Play</Button>
                 </Form>
             </div>
         </>

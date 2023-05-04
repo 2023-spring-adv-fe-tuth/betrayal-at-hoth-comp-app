@@ -13,6 +13,7 @@ interface HomeProps {
     }[];
     longestGame: number;
     shortestGame: number;
+    avgGameLengths: {players: number, avgTime: number}[];
 };
 
 const formatDate = durationFormatter();
@@ -28,20 +29,20 @@ const cssColor = (x: string) => {
     return className;
 };
 
-export const Home: React.FC<HomeProps> = ({ winnerRecord, longestGame, shortestGame }) => {
+export const Home: React.FC<HomeProps> = ({ winnerRecord, longestGame, shortestGame, avgGameLengths }) => {
 
     const nav = useNavigate();
 
     return (
             <>
                 <div>
-                    <Button className="mb-3" variant="success" onClick={() => nav("/setup")}>Play</Button>
+                    <Button className="mb-3" variant="success" onClick={() => nav("/setup")}>Setup</Button>
                     <Card className="mb-3">
                         <Card.Header>Game History</Card.Header>
                         <Card.Body>{winnerRecord.length > 0 ?
                             (<ListGroup>
                                 {winnerRecord.map((x, index) => 
-                                <ListGroup.Item variant={cssColor(x.winner)} key={index}>{x.winner} Players: {x.players}</ListGroup.Item>)}
+                                <ListGroup.Item variant={cssColor(x.winner)} key={index}>Winning Side: {x.winner}   Players: {x.players}</ListGroup.Item>)}
                             </ListGroup>) :
                             (<p>No game history</p>)
                             }
@@ -52,8 +53,13 @@ export const Home: React.FC<HomeProps> = ({ winnerRecord, longestGame, shortestG
                         <Card.Body>
                             <p className="mb-1">{`Longest Game: ${Number.isInteger(longestGame) ? formatDate(longestGame) : "No games played"}`}</p>
                             <p className="mb-1">{`Shortest Game: ${Number.isInteger(shortestGame) ? formatDate(shortestGame) : "No games played"}`}</p>
-                            <ListGroup>
-                                {}
+                            <ListGroup>{avgGameLengths.length > 0 ?
+                            (<ListGroup>
+                                {avgGameLengths.map((x, index) => 
+                                <ListGroup.Item key={index}>Players: {x.players} Average Game Length: {`${formatDate(x.avgTime)}`}</ListGroup.Item>)}
+                            </ListGroup>) :
+                            (<p>No game history</p>)
+                            }
                             </ListGroup>
                         </Card.Body>
                     </Card>

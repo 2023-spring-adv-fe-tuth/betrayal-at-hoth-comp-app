@@ -1,7 +1,7 @@
 {
   "name": "betrayal-at-hoth-comp-app",
   "version": "0.1.0",
-  "homepage": "https://Towna.github.io/betrayal-at-hoth-comp-app/",
+  "homepage": "https://2023-spring-adv-fe-tuth.github.io/betrayal-at-hoth-comp-app/",
   "private": true,
   "dependencies": {
     "@aws-sdk/util-dynamodb": "^3.326.0",

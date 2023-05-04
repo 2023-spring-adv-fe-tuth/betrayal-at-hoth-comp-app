@@ -18,7 +18,7 @@ export const winnerRecord = (results: GameResult[]) => {
 
 export type GetLongestGame = (results: GameResult[]) => number;
 export type GetShortestGame = (results: GameResult[]) => number;
-export type GetAverageGameLengthsByPlayerCount = (results: GameResult[]) => {playerCount: number, avgTime: number}[];
+export type GetAverageGameLengthsByPlayerCount = (results: GameResult[]) => {players: number, avgTime: number}[];
 
 export const getLongestGame: GetLongestGame = (results: GameResult[]) => 
     Math.max(...results.map(x => new Date(x.end).getTime() - new Date(x.start).getTime()));
@@ -33,13 +33,14 @@ export const getAverageGameDuration = (results: GameResult[]) => {
     const sum = results.reduce((acc, x) => acc + getGameDuration(x), 0);
 };
 
-// export const getAverageGameDurationByPlayerCount = (results: GameResult[]) => {
-//     const grouped = results.reduce(
-//         (acc, x) => acc.set(x.players, [...(acc.get(x.players) ?? []), x]), 
-//         new Map<number, GameResult[]>()
-//     );
+export const avgGameLengths: GetAverageGameLengthsByPlayerCount = (results: GameResult[]) => {
+    const groupedByPlayers = results.reduce(
+        (acc, x) => acc.set(x.players, [...acc.get(x.players) ?? [], 
+        new Date(x.end).getTime() - new Date(x.start).getTime()]), 
+        new Map<number, number[]>()
+    );
 
-//     return [...grouped].map(x => ({playerCount: x[0],
-//          avgGameDuration: getAverageGameDuration(x[1])}))
-//         .sort((a, b) => a.playerCount < b.playerCount ? -1 : 1);
-// };
+    return [...groupedByPlayers].map(x => ({players: x[0],
+        avgTime: x[1].reduce((acc, x) => acc + x, 0) / x[1].length}))
+        .sort((a, b) => a.players < b.players ? -1 : 1);
+};
