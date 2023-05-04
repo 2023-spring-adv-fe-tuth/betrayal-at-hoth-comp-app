@@ -38,18 +38,20 @@ export const Home: React.FC<HomeProps> = ({ winnerRecord, longestGame, shortestG
                     <Button className="mb-3" variant="success" onClick={() => nav("/setup")}>Play</Button>
                     <Card className="mb-3">
                         <Card.Header>Game History</Card.Header>
-                        <Card.Body>
-                            <ListGroup>
+                        <Card.Body>{winnerRecord.length > 0 ?
+                            (<ListGroup>
                                 {winnerRecord.map((x, index) => 
                                 <ListGroup.Item variant={cssColor(x.winner)} key={index}>{x.winner} Players: {x.players}</ListGroup.Item>)}
-                            </ListGroup>
+                            </ListGroup>) :
+                            (<p>No game history</p>)
+                            }
                         </Card.Body>
                     </Card>
                     <Card>
                         <Card.Header>Game Length</Card.Header>
                         <Card.Body>
-                            <p className="mb-1">{`Longest Game: ${formatDate(longestGame)}`}</p>
-                            <p className="mb-1">{`Shortest Game: ${formatDate(shortestGame)}`}</p>
+                            <p className="mb-1">{`Longest Game: ${Number.isInteger(longestGame) ? formatDate(longestGame) : "No games played"}`}</p>
+                            <p className="mb-1">{`Shortest Game: ${Number.isInteger(shortestGame) ? formatDate(shortestGame) : "No games played"}`}</p>
                             <ListGroup>
                                 {}
                             </ListGroup>
