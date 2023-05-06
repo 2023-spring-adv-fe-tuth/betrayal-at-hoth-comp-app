@@ -5,10 +5,10 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const radios = [
-    { name: "Three", value: 3},
-    { name: "Four", value: 4},
-    { name: "Five", value: 5},
-    { name: "Six", value: 6}
+    {name: "Three", value: 3},
+    {name: "Four", value: 4},
+    {name: "Five", value: 5},
+    {name: "Six", value: 6}
 ];
 
 interface SetupProps {
