@@ -10,6 +10,25 @@ export interface SetupData {
     players: number;
 };
 
+// export interface GameResult {
+//     start: string;
+//     end: string;
+//     players: number;
+//     winner: string;
+//     charactersPlayed: string[];
+//     charactersSurvived: string[];
+//     hauntPlayed: string;
+//     turnsTaken: number;
+// };
+
+// export interface SetupData {
+//     start: string;
+//     players: number;
+//     charactersPlayed: string[];
+//     hauntPlayed: string;
+// };
+
+
 export const winnerRecord = (results: GameResult[]) => {
     const recentWinners = results.map(x => ({winner: x.winner, players: x.players}));
 
