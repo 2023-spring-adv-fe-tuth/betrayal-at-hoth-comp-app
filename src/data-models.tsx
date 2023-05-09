@@ -3,12 +3,12 @@ export interface GameResult {
     end: string;
     players: number;
     winner: string;
-}
+};
 
 export interface SetupData {
     start: string;
     players: number;
-}
+};
 
 export const winnerRecord = (results: GameResult[]) => {
     const recentWinners = results.map(x => ({winner: x.winner, players: x.players}));
